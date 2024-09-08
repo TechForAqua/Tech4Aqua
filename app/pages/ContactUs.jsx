@@ -1,41 +1,49 @@
-// components/ContactUs.jsx
-import { Form, Input, Button } from 'antd';
-import axios from 'axios';
+import { Form, Input, Button, message } from "antd";
+
 
 const { TextArea } = Input;
 
 export default function ContactUs() {
+  const [messageApi, contextHolder] = message.useMessage(); 
+
   const [form] = Form.useForm();
 
-  const onFinish = async(values) => {
+  const onFinish = async (values) => {
     try {
-     
-      const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(values),
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
       });
 
       if (response.ok) {
-        
-        console.log("Successfully submitted message")// fetching all the data after adding a row and setting it to setDetails
+        messageApi.open({
+          type: "success",
+          content: "This message has been sent successfully!",
+        });
+        form.resetFields(); 
+        console.log("Successfully submitted message");
       } else {
-          const data = await response.json();
-        console.log("Message Error:",data.message);
+        const data = await response.json();
+        messageApi.open({
+          type: 'error',
+          content: 'Error occurred',
+        });
+        console.log("Message Error:", data.message);
       }
-  } catch (error) {
+    } catch (error) {
       console.log(error.message);
-  }
+    }
   };
 
   return (
     <div className="bg-white h-full w-full absolute z-0">
-      <div className=" mx-auto py-12 px-4 lg:px-8 bg-white">
+      {contextHolder}
+      <div className="mx-auto py-12 px-4 lg:px-8 bg-white">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white h-full w-full p-8 shadow-md rounded-lg">
           
-          {/* Contact Details Section */}
           <div className="space-y-6">
             <h2 className="text-4xl font-bold text-blue-600">Contact Us</h2>
             <p className="text-lg text-gray-500">Lorem ipsum dolor sit amet</p>
@@ -59,49 +67,61 @@ export default function ContactUs() {
             </div>
           </div>
 
-          {/* Contact Form Section */}
+          
           <div>
-            <Form
-              form={form}
-              onFinish={onFinish}
-              layout="vertical"
-            >
+            <Form form={form} onFinish={onFinish} layout="vertical">
               <Form.Item
                 name="name"
                 label="Name"
-                rules={[{ required: true, message: 'Please input your name!' }]}
+                rules={[{ required: true, message: "Please input your name!" }]}
               >
-                <Input placeholder="Your Name" className="px-4 py-2 border rounded-md" />
+                <Input
+                  placeholder="Your Name"
+                  className="px-4 py-2 border rounded-md"
+                />
               </Form.Item>
 
               <Form.Item
                 name="email"
                 label="Email"
                 rules={[
-                  { required: true, message: 'Please input your email!' },
-                  { type: 'email', message: 'The input is not a valid email!' },
+                  { required: true, message: "Please input your email!" },
+                  { type: "email", message: "The input is not a valid email!" },
                 ]}
               >
-                <Input placeholder="Your Email" className="px-4 py-2 border rounded-md" />
+                <Input
+                  placeholder="Your Email"
+                  className="px-4 py-2 border rounded-md"
+                />
               </Form.Item>
 
-              <Form.Item
-                name="subject"
-                label="Subject"
-              >
-                <Input placeholder="Subject" className="px-4 py-2 border rounded-md" />
+              <Form.Item name="subject" label="Subject">
+                <Input
+                  placeholder="Subject"
+                  className="px-4 py-2 border rounded-md"
+                />
               </Form.Item>
 
               <Form.Item
                 name="message"
                 label="Message"
-                rules={[{ required: true, message: 'Please input your message!' }]}
+                rules={[
+                  { required: true, message: "Please input your message!" },
+                ]}
               >
-                <TextArea rows={4} placeholder="Write Your Message" className="px-4 py-2 border rounded-md" />
+                <TextArea
+                  rows={4}
+                  placeholder="Write Your Message"
+                  className="px-4 py-2 border rounded-md"
+                />
               </Form.Item>
 
               <Form.Item>
-                <Button type="primary" htmlType="submit" className="w-full bg-blue-600 text-white py-2 rounded-md">
+                <Button
+                  type="primary"
+                  htmlType="submit"
+                  className="w-full bg-blue-600 text-white py-2 rounded-md"
+                >
                   Send Message
                 </Button>
               </Form.Item>
