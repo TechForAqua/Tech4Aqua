@@ -34,7 +34,7 @@ export default function Faqs() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12">
+    <div className="min-h-screen bg-gray-100 py-12 relative z-0">
       <div className="max-w-4xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-blue-600">FAQ&apos;s</h2>

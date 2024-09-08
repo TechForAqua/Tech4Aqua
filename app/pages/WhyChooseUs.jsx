@@ -14,7 +14,7 @@ export default function WhyChooseUs() {
   ];
  
   return (
-    <section className="py-12 bg-white">
+    <section className="py-12 bg-white relative z-0">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 className="text-4xl font-bold text-blue-600 mb-4">Why Choose Us</h2>
         <p className="text-lg text-orange-500 mb-12">Lorem ipsum dolor sit amet</p>

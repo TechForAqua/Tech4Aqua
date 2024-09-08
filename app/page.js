@@ -6,6 +6,7 @@ import Services from './pages/Services'
 import WhyChooseUs from './pages/WhyChooseUs'
 import Team from './pages/Team'
 import Faqs from './pages/Faqs'
+import ContactUs from './pages/ContactUs'
 
 const page = () => {
   return (
@@ -15,7 +16,8 @@ const page = () => {
    <Services />
    <WhyChooseUs />
    <Team />
-   <Faqs />
+    <Faqs />
+   <ContactUs />
    
    </>
   )

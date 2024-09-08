@@ -5,21 +5,21 @@ import ParticlesComponent from '../components/ParticleaComponent';
 const HeroSection = () => {
   return (
     <>
-    <ParticlesComponent id="particles" />
 
-    <section className="relative bg-blue-900 text-white h-screen flex items-center justify-center">
+    <section className="relative  text-white h-screen flex items-center justify-center select-none">
+    <ParticlesComponent id="particles" />
       {/* Background Image */}
-      <div className="absolute inset-0 z-0">
+      {/* <div className="absolute inset-0 z-0">
         <Image
-          src="/herobg.png" 
+          src="/herobg.png"
           alt="Background"
           layout="fill"
           objectFit="cover"
           quality={100}
           className="object-cover hidden md:block"
         />
-      </div>
-      
+      </div> */}
+
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center lg:flex-row lg:items-center container mx-auto px-6 lg:px-8 text-center lg:text-left">
         <div className="lg:w-1/2">
